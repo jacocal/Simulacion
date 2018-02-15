@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Problema 13</title>
+
+  <!-- include jStat: https://jstat.github.io/all.html -->
+  <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <script src="libs/rands.min.js"></script>
+</head>
+<body>
+  <p><h3>Promedio clientes: <span id="op1"></span></h3></p>
+  <p><h3>Promedio tiempos: <span id="op2"></span></h3></p>
+
+  <script type="text/javascript">
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function getSum(total, num) {
+    return total + num;
+}
+  var minutos = 5000;
+  var hora = 60;
+  var lamda = 40;
+  var fila = 0;
+  var cajero1 = 0;
+  var cajero2 = 0;
+  var cajero3 = 0;
+  var cajeros = [cajero1, cajero2, cajero3];
+  var clientes = [];
+  var tiempos = [];
+  var exito = 0;
+  // Llama rands.min.js
+  var r = new Rands();
+  for (var i = 0; i < minutos; i++) {
+    if(((i+1) % hora) == 0) {
+      exito += 1;
+      llegadas = r.poisson(lamda);
+      clientes.push(llegadas);
+      fila += llegadas;
+    }
+    for (var j = 0; j < cajeros.length; j++) {
+      while(cajeros[j] == 0) {
+        if (fila == 0) {
+          break;
+        } else {
+          transaccion = getRandomInt(0, 1);
+          tiempos.push(transaccion);
+          fila -= 1;
+          cajeros[j] = transaccion;
+        }
+      }
+    }
+  }
+  document.getElementById("op1").innerHTML = clientes.reduce(getSum)/clientes.length;
+  document.getElementById("op2").innerHTML = tiempos.reduce(getSum)/tiempos.length;
+</script>
+
+</body>
+</html>

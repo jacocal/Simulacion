@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>Simulaciones Cuadros</title>
+</head>
+<body>
+  <h3>Numero de simulaciones: <span id="simulaciones"></span></h3>
+  <h3>Ganancias comprando en 400K (Dia 1): <span id="primerdia"></span></h3>
+  <h3>Cuadros comprados en 400K: <span id="400"></span></h3>
+  <h3>Ganancias comprando en 300K (Dia 2): <span id="segundodia"></span></h3>
+  <h3>Cuadros comprados en 300K: <span id="300"></span></h3>
+  <h3>Ganancias comprando en 260K (Dia 3): <span id="tercerdia"></span></h3>
+  <h3>Cuadros comprados en 260K: <span id="260"></span></h3>
+
+  <script>
+  // VALORES PARA CONFIGURAR
+  var nSimulaciones = 5000;
+  var compra400 = 0;
+  var compra300 = 0;
+  var compra260 = 0;
+  var ganancias400 = 0;
+  var ganancias300 = 0;
+  var ganancias260 = 0;
+  for(var i = 0; i < nSimulaciones; i++) {
+    for(var j = 0; j < 3; j++) {
+      var randomDisponible = Math.random();
+      if(randomDisponible > 0.6) {
+        break;
+      }
+      if(j == 0) {
+        compra400++;
+        ganancias400 += 100000;
+      } else if (j == 1) {
+        compra300++;
+        ganancias300 += 200000;
+      } else if (j == 2) {
+        compra260++;
+        ganancias260 += 240000;
+      }
+    }
+  }
+  // console.log("# de Ganados: " + numeroGanancias.toString());
+  document.getElementById("simulaciones").innerHTML = nSimulaciones;
+  document.getElementById("primerdia").innerHTML = ganancias400;
+  document.getElementById("400").innerHTML = compra400;
+  document.getElementById("segundodia").innerHTML = ganancias300;
+  document.getElementById("300").innerHTML = compra300;
+  document.getElementById("tercerdia").innerHTML = ganancias260;
+  document.getElementById("260").innerHTML = compra260;
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tarjetas de crédito </title>
+</head>
+<body>
+  <h1>Tarjetas de crédito </h1>
+  <p>
+    Un banco ofrece una tarjeta de crédito, a sus cuentahabientes, por contacto
+    telefónico y ha experimentado los siguientes resultados cuando un vendedor
+    realiza una llamada:
+  </p>
+  <ul>
+    <li>Probabilidad de que le contesten la llamada: 			30%</li>
+    <li>Si le contestaron, la probabilidad de que sea una mujer	80%</li>
+    <li>La probabilidad de venta, si es mujer					15%</li>
+    <li>  si es hombre						25%</li>
+  </ul>
+  <p>
+    Cuando se realiza la venta, el monto del crédito tiene la siguiente distribución: <br>
+    Crédito  |  Mujer  |  Hombre <br>
+    $5,000   |  0.6    |  0.1 <br>
+    $10,000  |  0.3    |  0.4 <br>
+    $15,000  |  0.1    |  0.3 <br>
+    $20,000  |   -     |  0.2 <br>
+
+  Cada tarjeta vendida da una comisión de $200 por cada $5,000 de crédito
+  obtenido. Simulando 1000 llamadas telefónicas hay que calcular las estadísticas
+  descriptivas del crédito y la comisión del vendedor (Gallagher, 1980, p. 526)
+</p>
+  <p><h1>La comision sería <span style="color: blue;" id="comision"></span></h1></p>
+  <p><h1>De los cuales <span style="color: green;" id="hombres"></span> son hombres y <span style="color: pink;" id="mujeres"></span> son mujeres</h1></p>
+  <p><h1>Mujeres(5,000 - 10,000 - 15,000) <span style="color: pink;" id="mujer5"></span> - <span style="color: pink;" id="mujer10"></span> - <span style="color: pink;" id="mujer15"></span> </h1></p>
+  <p><h1>Hombres(5,000 - 10,000 - 15,000 - 20,000) <span style="color: green;" id="hombre5"></span> - <span style="color: green;" id="hombre10"></span> - <span style="color: green;" id="hombre15"></span> - <span style="color: green;" id="hombre20"></span></h1></p>
+
+
+  <script type="text/javascript" src="functions.js"></script>
+
+</body>
+</html>

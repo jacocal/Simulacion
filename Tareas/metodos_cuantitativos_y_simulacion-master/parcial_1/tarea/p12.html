@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Problema 12</title>
+
+  <!-- include jStat: https://jstat.github.io/all.html -->
+  <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <script src="libs/rands.min.js"></script>
+
+</head>
+<body>
+  <p><h3>Opcion 1: <span id="op1"></span></h3></p>
+  <p><h3>Opcion 2: <span id="op2"></span></h3></p>
+  <p><h3><span id="opfinal"></span></h3></p>
+
+  <script type="text/javascript">
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  var minutos = 5000;
+  var hora = 60;
+  var lamda = 20;
+  var exponencial = 2;
+  var fila1 = 0;
+  var fila2 = 0;
+  var llegadas, servicio1, servicio2;
+  // Llama rands.min.js
+  var r = new Rands();
+  for (var x = 0; x < minutos; x++) {
+    if(x % hora == 0) {
+      // llegadas por hora
+      llegadas = r.poisson(lamda);
+    } else {
+      llegadas = 0;
+    }
+    fila1 += llegadas
+    servicio1 = Number.parseInt(r.exponential(exponencial));
+    if(fila1 > servicio1) {
+      fila1 -= servicio1;
+      fila2 += servicio1;
+    } else {
+      fila1 = 0;
+      fila2 += servicio1 - fila1;
+    }
+    servicio2 = getRandomInt(1,2);
+    if(fila2 > servicio2) {
+      fila2 -= servicio2;
+    } else {
+      fila2 = 0;
+    }
+  }
+  document.getElementById("op1").innerHTML = fila1;
+  document.getElementById("op2").innerHTML = fila2;
+  if ((fila1 < fila2)) {
+    document.getElementById("opfinal").innerHTML = "La fila 1 es mas corta";
+  } else if ((fila2 < fila1)) {
+    document.getElementById("opfinal").innerHTML = "La fila 2 es mas corta";
+  } else {
+    document.getElementById("opfinal").innerHTML = "Ambas tienen el mismo";
+  }
+</script>
+
+</body>
+</html>

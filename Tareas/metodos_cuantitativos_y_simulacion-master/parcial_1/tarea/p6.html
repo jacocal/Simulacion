@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Problema 6</title>
+
+  <!-- include jStat: https://jstat.github.io/all.html -->
+  <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <script src="libs/rands.min.js"></script>
+</head>
+<body>
+  <p><h3>Opcion 1: <span id="op1"></span></h3></p>
+  <p><h3>Opcion 2: <span id="op2"></span></h3></p>
+  <p><h3><span id="opfinal"></span></h3></p>
+
+  <script type="text/javascript">
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  var horas = 20000
+  var tiempo_transcurrido1 = 0
+  var tiempo_transcurrido2 = 0
+  var componentes = 4
+  var horas_vida_media = 600
+  var horas_std_dev = 100
+  var desc1 = 1
+  var desc4 = 2
+  var costoComponente = 200
+  var costoDescHora = 100
+  var costo1 = 0
+  var costo2 = 0
+  while(tiempo_transcurrido1 < horas) {
+    var tiempos = []
+    for (var i = 0; i < componentes; i++) {
+      var rand = getRandomInt((horas_vida_media - horas_std_dev), (horas_vida_media + horas_std_dev));
+      tiempos.push(rand);
+    }
+    tiempo_transcurrido1 += tiempos[tiempos.length - 1];
+    if(tiempo_transcurrido1 >= horas) {
+    } else {
+      costo1 += (costoComponente + (costoDescHora * desc1)) * componentes;
+    }
+  }
+  while(tiempo_transcurrido2 < horas) {
+    var rand = getRandomInt((horas_vida_media - horas_std_dev), (horas_vida_media + horas_std_dev));
+    tiempo_transcurrido2 += rand;
+    if(tiempo_transcurrido2 >= horas) {
+    } else {
+      costo2 += (costoComponente * componentes) + (costoDescHora * desc4);
+    }
+  }
+  document.getElementById("op1").innerHTML = costo1/horas;
+  document.getElementById("op2").innerHTML = costo2/horas;
+  if(costo1/horas < costo2/horas) {
+    document.getElementById("opfinal").innerHTML = "La opción 1 es mas economica";
+  } else if (costo2/horas < costo1/horas) {
+    document.getElementById("opfinal").innerHTML = "La opción 2 es mas economica";
+  } else {
+    document.getElementById("opfinal").innerHTML = "Ambas cuestan lo mismo";
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Problema 14</title>
+
+  <!-- include jStat: https://jstat.github.io/all.html -->
+  <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <script src="libs/rands.min.js"></script>
+</head>
+<body>
+  <p><h3>Clientes perdidos: <span id="op1"></span></h3></p>
+  <p><h3>Posibilidad encontrar lugar: <span id="op2"></span></h3></p>
+  <p><h3>Lugares disponibles: <span id="op3"></span></h3></p>
+
+  <script type="text/javascript">
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function getSum(total, num) {
+    return total + num;
+  }
+  var minutos = 5000;
+  var hora = 60;
+  var lamda = 10/hora;
+  var lugares = [0, 0, 0, 0, 0, 0];
+  var perdidos = 0;
+  var estacionado = 0;
+  var espacios = 0;
+  var clientes = 0;
+  // Llama rands.min.js
+  var r = new Rands();
+  for (var i = 0; i < minutos; i++){
+    llegadas = r.poisson(lamda);
+    clientes += llegadas;
+    if (llegadas != 0) {
+      for (var j = 0; j < llegadas; j++){
+        try {
+          lugares[lugares.indexOf(0)] = getRandomInt(10, 30);
+          estacionado += 1;
+        } catch (err) {
+          perdidos += 1;
+        }
+      }
+    }
+    for (var k = 0; k < lugares.length; k++) {
+      if(lugares[k] > 0) {
+        lugares[k] = lugares[k] - 1;
+      }
+    }
+    for(var l = 0; l < lugares.length; l++) {
+      if(lugares[l] == 0) {
+        espacios += 1;
+      }
+    }
+  }
+  document.getElementById("op1").innerHTML = perdidos/clientes;
+  document.getElementById("op2").innerHTML = estacionado/clientes;
+  document.getElementById("op3").innerHTML = espacios/minutos;
+</script>
+
+</body>
+</html>

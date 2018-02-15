@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Problema 5</title>
+
+  <!-- include jStat: https://jstat.github.io/all.html -->
+  <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
+  <script src="libs/rands.min.js"></script>
+</head>
+<body>
+  <p><h3>Opcion 1: <span id="op1"></span></h3></p>
+  <p><h3>Opcion 2: <span id="op2"></span></h3></p>
+  <p><h3><span id="opfinal"></span></h3></p>
+
+  <script type="text/javascript">
+  var entrega1, entrega2, dia, llegada1, llegada2;
+  var dias = 20
+  var n = 6
+  var theta = 1/2
+  var lambda = 3
+  var costoXunidadXdia = 1
+  var costoXfaltanteXunidad = 10
+  var costoXorden = 50
+  var max_inventario = 30
+  var min_inventario = 10
+  var costo1 = 0
+  var costo2 = 0
+  var inventario1 = 0
+  var inventario2 = 0
+  var falta1 = 0
+  var falta2 = 0
+  // Llama rands.min.js
+  var r = new Rands();
+  for (var i = 0; i < dias; i++) {
+    demanda = r.binomial(n, theta);
+    if(((i + 1) % 7) == 0) {
+      entrega1 = r.poisson(lambda);
+      costo1 += costoXorden;
+      llegada1 = (i + 1) + entrega1;
+    }
+      if(inventario2 <= min_inventario){
+        entrega2 = r.poisson(lambda);
+        costo2 += costoXorden;
+        llegada2 = (i + 1) + entrega1;
+      }
+      if((i + 1) == llegada1) {
+        inventario1 = max_inventario;
+      }
+      if((i + 1) == llegada2) {
+        inventario2 = max_inventario;
+      }
+      if(inventario1 >= demanda) {
+        inventario1 -= demanda;
+        costo1 += inventario1 * costoXunidadXdia;
+      } else {
+        falta1 += demanda - inventario1;
+      }
+      if(inventario2 >= demanda) {
+        inventario2 -= demanda;
+        costo2 += inventario2 * costoXunidadXdia;
+      } else {
+        falta2 += demanda - inventario2;
+      }
+  }
+  costo1 += Math.abs(inventario1 - falta1) * costoXfaltanteXunidad;
+  costo2 += Math.abs(inventario2 - falta2) * costoXfaltanteXunidad;
+  document.getElementById("op1").innerHTML = costo1/dias;
+  document.getElementById("op2").innerHTML = costo2/dias;
+  if(costo1/dias < costo2/dias) {
+    document.getElementById("opfinal").innerHTML = "La opción 1 es mas economica";
+  } else if (costo2/dias < costo1/dias) {
+    document.getElementById("opfinal").innerHTML = "La opción 2 es mas economica";
+  } else {
+    document.getElementById("opfinal").innerHTML = "Ambas cuestan lo mismo";
+  }
+</script>
+
+</body>
+</html>

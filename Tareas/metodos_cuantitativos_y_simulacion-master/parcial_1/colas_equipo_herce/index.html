@@ -1,0 +1,222 @@
+<html>
+<head>
+  <title>Simulaciones Colas Camiones</title>
+  <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+  <h3>Equipos de 3</h3>
+  <div id="box3"></div>
+  <br>
+  <div id="box32"></div>
+
+  <h3>Equipos de 4</h3>
+  <div id="box4"></div>
+  <br>
+  <div id="box42"></div>
+
+  <h3>Equipos de 5</h3>
+  <div id="box5"></div>
+  <br>
+  <div id="box52"></div>
+
+  <h3>Equipos de 6</h3>
+  <div id="box6"></div>
+  <br>
+  <div id="box62"></div>
+
+  <script>
+  function print3() {
+    let data = main3();
+    let rows = data.tabla;
+    let html = "<table border='1|1'>";
+    html += "<tr><th>#</th>"
+    html += "<th>Tiempo entre llegada</th>"
+    html += "<th>Tiempo de llegada</th>"
+    html += "<th>Iniciacion del servicio</th>"
+    html += "<th>Tiempo de servicio</th>"
+    html += "<th>Terminacion del servicio</th>"
+    html += "<th>Ocio del personal</th>"
+    html += "<th>Tiempo de espera del camion</th>"
+    html += "<th>Longitud de la cola</th>"
+    html += "<th>Empleados comieron</th>"
+    html += "</tr>";
+    for (var i = 1; i < rows.length; i++) {
+      html+="<tr>";
+      html+="<td>"+ (i-1) +"</td>";
+      html+="<td>"+rows[i].tiempoEntreLlegada+"</td>";
+      html+="<td>"+rows[i].tiempoLlegada+"</td>";
+      html+="<td>"+rows[i].inicioServicio+"</td>";
+      html+="<td>"+rows[i].tiempoServicio+"</td>";
+      html+="<td>"+rows[i].terminaServicio+"</td>";
+      html+="<td>"+rows[i].ocioPersonal+"</td>";
+      html+="<td>"+rows[i].tiempoEsperaCamion+"</td>";
+      html+="<td>"+rows[i].longitudCola+"</td>";
+      html+="<td>"+rows[i].empleadosComieron+"</td>";
+      html+="</tr>";
+    }
+    html+="</table>";
+    document.getElementById("box3").innerHTML = html;
+    let html2 = "<table border='1|1'>";
+    html2 += "<tr><th>Costo salarios</th>"
+    html2 += "<th>Costo horas extra</th>"
+    html2 += "<th>Costo almacen</th>"
+    html2 += "<th>Costo espera camiones</th>"
+    html2 += "<th>Total</th>"
+    html2 += "</tr>";
+    html2 +="<tr>";
+    html2 +="<td>"+data.costoEmpleados+"</td>";
+    html2 +="<td>"+data.costoHorasExtra+"</td>";
+    html2 +="<td>"+data.costoAlmacen+"</td>";
+    html2 +="<td>"+data.costoEsperaCamiones+"</td>";
+    html2 +="<td>"+data.total+"</td>";
+    html2 +="</tr>";
+    document.getElementById("box32").innerHTML = html2;
+  }
+  function print4() {
+    let data = main4();
+    let rows = data.tabla;
+    let html = "<table border='1|1'>";
+    html += "<tr><th>#</th>"
+    html += "<th>Tiempo entre llegada</th>"
+    html += "<th>Tiempo de llegada</th>"
+    html += "<th>Iniciacion del servicio</th>"
+    html += "<th>Tiempo de servicio</th>"
+    html += "<th>Terminacion del servicio</th>"
+    html += "<th>Ocio del personal</th>"
+    html += "<th>Tiempo de espera del camion</th>"
+    html += "<th>Longitud de la cola</th>"
+    html += "<th>Empleados comieron</th>"
+    html += "</tr>";
+    for (var i = 1; i < rows.length; i++) {
+      html+="<tr>";
+      html+="<td>"+ (i-1) +"</td>";
+      html+="<td>"+rows[i].tiempoEntreLlegada+"</td>";
+      html+="<td>"+rows[i].tiempoLlegada+"</td>";
+      html+="<td>"+rows[i].inicioServicio+"</td>";
+      html+="<td>"+rows[i].tiempoServicio+"</td>";
+      html+="<td>"+rows[i].terminaServicio+"</td>";
+      html+="<td>"+rows[i].ocioPersonal+"</td>";
+      html+="<td>"+rows[i].tiempoEsperaCamion+"</td>";
+      html+="<td>"+rows[i].longitudCola+"</td>";
+      html+="<td>"+rows[i].empleadosComieron+"</td>";
+      html+="</tr>";
+    }
+    html+="</table>";
+    document.getElementById("box4").innerHTML = html;
+    let html2 = "<table border='1|1'>";
+    html2 += "<tr><th>Costo salarios</th>"
+    html2 += "<th>Costo horas extra</th>"
+    html2 += "<th>Costo almacen</th>"
+    html2 += "<th>Costo espera camiones</th>"
+    html2 += "<th>Total</th>"
+    html2 += "</tr>";
+    html2 +="<tr>";
+    html2 +="<td>"+data.costoEmpleados+"</td>";
+    html2 +="<td>"+data.costoHorasExtra+"</td>";
+    html2 +="<td>"+data.costoAlmacen+"</td>";
+    html2 +="<td>"+data.costoEsperaCamiones+"</td>";
+    html2 +="<td>"+data.total+"</td>";
+    html2 +="</tr>";
+    document.getElementById("box42").innerHTML = html2;
+  }
+  function print5() {
+    let data = main5();
+    let rows = data.tabla;
+    let html = "<table border='1|1'>";
+    html += "<tr><th>#</th>"
+    html += "<th>Tiempo entre llegada</th>"
+    html += "<th>Tiempo de llegada</th>"
+    html += "<th>Iniciacion del servicio</th>"
+    html += "<th>Tiempo de servicio</th>"
+    html += "<th>Terminacion del servicio</th>"
+    html += "<th>Ocio del personal</th>"
+    html += "<th>Tiempo de espera del camion</th>"
+    html += "<th>Longitud de la cola</th>"
+    html += "<th>Empleados comieron</th>"
+    html += "</tr>";
+    for (var i = 1; i < rows.length; i++) {
+      html+="<tr>";
+      html+="<td>"+ (i-1) +"</td>";
+      html+="<td>"+rows[i].tiempoEntreLlegada+"</td>";
+      html+="<td>"+rows[i].tiempoLlegada+"</td>";
+      html+="<td>"+rows[i].inicioServicio+"</td>";
+      html+="<td>"+rows[i].tiempoServicio+"</td>";
+      html+="<td>"+rows[i].terminaServicio+"</td>";
+      html+="<td>"+rows[i].ocioPersonal+"</td>";
+      html+="<td>"+rows[i].tiempoEsperaCamion+"</td>";
+      html+="<td>"+rows[i].longitudCola+"</td>";
+      html+="<td>"+rows[i].empleadosComieron+"</td>";
+      html+="</tr>";
+    }
+    html+="</table>";
+    document.getElementById("box5").innerHTML = html;
+    let html2 = "<table border='1|1'>";
+    html2 += "<tr><th>Costo salarios</th>"
+    html2 += "<th>Costo horas extra</th>"
+    html2 += "<th>Costo almacen</th>"
+    html2 += "<th>Costo espera camiones</th>"
+    html2 += "<th>Total</th>"
+    html2 += "</tr>";
+    html2 +="<tr>";
+    html2 +="<td>"+data.costoEmpleados+"</td>";
+    html2 +="<td>"+data.costoHorasExtra+"</td>";
+    html2 +="<td>"+data.costoAlmacen+"</td>";
+    html2 +="<td>"+data.costoEsperaCamiones+"</td>";
+    html2 +="<td>"+data.total+"</td>";
+    html2 +="</tr>";
+    document.getElementById("box52").innerHTML = html2;
+  }
+  function print6() {
+    let data = main6();
+    let rows = data.tabla;
+    let html = "<table border='1|1'>";
+    html += "<tr><th>#</th>"
+    html += "<th>Tiempo entre llegada</th>"
+    html += "<th>Tiempo de llegada</th>"
+    html += "<th>Iniciacion del servicio</th>"
+    html += "<th>Tiempo de servicio</th>"
+    html += "<th>Terminacion del servicio</th>"
+    html += "<th>Ocio del personal</th>"
+    html += "<th>Tiempo de espera del camion</th>"
+    html += "<th>Longitud de la cola</th>"
+    html += "<th>Empleados comieron</th>"
+    html += "</tr>";
+    for (var i = 1; i < rows.length; i++) {
+      html+="<tr>";
+      html+="<td>"+ (i-1) +"</td>";
+      html+="<td>"+rows[i].tiempoEntreLlegada+"</td>";
+      html+="<td>"+rows[i].tiempoLlegada+"</td>";
+      html+="<td>"+rows[i].inicioServicio+"</td>";
+      html+="<td>"+rows[i].tiempoServicio+"</td>";
+      html+="<td>"+rows[i].terminaServicio+"</td>";
+      html+="<td>"+rows[i].ocioPersonal+"</td>";
+      html+="<td>"+rows[i].tiempoEsperaCamion+"</td>";
+      html+="<td>"+rows[i].longitudCola+"</td>";
+      html+="<td>"+rows[i].empleadosComieron+"</td>";
+      html+="</tr>";
+    }
+    html+="</table>";
+    document.getElementById("box6").innerHTML = html;
+    let html2 = "<table border='1|1'>";
+    html2 += "<tr><th>Costo salarios</th>"
+    html2 += "<th>Costo horas extra</th>"
+    html2 += "<th>Costo almacen</th>"
+    html2 += "<th>Costo espera camiones</th>"
+    html2 += "<th>Total</th>"
+    html2 += "</tr>";
+    html2 +="<tr>";
+    html2 +="<td>"+data.costoEmpleados+"</td>";
+    html2 +="<td>"+data.costoHorasExtra+"</td>";
+    html2 +="<td>"+data.costoAlmacen+"</td>";
+    html2 +="<td>"+data.costoEsperaCamiones+"</td>";
+    html2 +="<td>"+data.total+"</td>";
+    html2 +="</tr>";
+    document.getElementById("box62").innerHTML = html2;
+  }
+  print3();
+  print4();
+  print5();
+  print6();
+  </script>
+</body>
+</html>
