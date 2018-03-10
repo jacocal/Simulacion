@@ -4,11 +4,12 @@ from random import *
 simulations = 5000
 
 dim = 3
-mat = np.zeros((dim,dim))
 matrixes = []
+vector = np.zeros(dim)
 avg_mat = np.zeros((dim, dim))
 
 for sim in range(simulations):
+    mat = np.zeros((dim,dim))
     for r in range(dim):
         for c in range(dim):
             mat[r,c] = round(random(),2)
@@ -30,4 +31,13 @@ for r in range(dim):
             suma += m[r,c]
         avg_mat[r,c] = suma/simulations
 
-print(avg_mat)
+for c in range(dim):
+    vector[c] = round(random(),2)
+
+for c in range(dim):
+    if(c == dim-1):
+        vector[c] = 1-(vector[:-1].sum())
+    else:
+        vector[c] = round(vector[c]/div,2)
+
+print("El vector resultante es: {}".format(np.dot(vector,avg_mat)))
